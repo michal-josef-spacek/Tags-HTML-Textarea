@@ -1,0 +1,121 @@
+NAME
+    Tags::HTML::Textarea - Tags helper for form input element.
+
+SYNOPSIS
+     use Tags::HTML::Textarea;
+
+     my $obj = Tags::HTML::Textarea->new(%params);
+     $obj->process($input);
+     $obj->process_css($input);
+
+METHODS
+  "new"
+     my $obj = Tags::HTML::Textarea->new(%params);
+
+    Constructor.
+
+    *       "css"
+
+            'CSS::Struct::Output' object for process_css processing.
+
+            Default value is undef.
+
+    *       "tags"
+
+            'Tags::Output' object.
+
+            Default value is undef.
+
+  "process"
+     $obj->process($input);
+
+    Process Tags structure for fields defined in @fields to output.
+
+    Accepted $input is Data::HTML::Form::Input.
+
+    Returns undef.
+
+  "process_css"
+     $obj->process_css($input);
+
+    Process CSS::Struct structure for output.
+
+    Returns undef.
+
+ERRORS
+     new():
+             From Tags::HTML::new():
+                     Parameter 'css' must be a 'CSS::Struct::Output::*' class.
+                     Parameter 'tags' must be a 'Tags::Output::*' class.
+
+     process():
+             From Tags::HTML::process():
+                     Parameter 'tags' isn't defined.
+             Input object must be a 'Data::HTML::Textarea' instance.
+
+     process_css():
+             From Tags::HTML::process_css():
+                     Parameter 'css' isn't defined.
+             Input object must be a 'Data::HTML::Textarea' instance.
+
+EXAMPLE
+     use strict;
+     use warnings;
+
+     use CSS::Struct::Output::Indent;
+     use Data::HTML::Textarea;
+     use Tags::HTML::Textarea;
+     use Tags::Output::Indent;
+
+     # Object.
+     my $css = CSS::Struct::Output::Indent->new;
+     my $tags = Tags::Output::Indent->new(
+             'xml' => 1,
+     );
+     my $obj = Tags::HTML::Textarea->new(
+             'css' => $css,
+             'tags' => $tags,
+     );
+
+     # Data object for input.
+     my $input = Data::HTML::Texarea->new(
+             'css_class' => 'textarea',
+     );
+
+     # Process input.
+     $obj->process($input);
+     $obj->process_css($input);
+
+     # Print out.
+     print "HTML:\n";
+     print $tags->flush;
+     print "\n\n";
+     print "CSS:\n";
+     print $css->flush;
+
+     # Output:
+     # HTML:
+     # TODO
+     #
+     # CSS:
+     # TODO
+
+DEPENDENCIES
+    Class::Utils, Error::Pure, Scalar::Util, Tags::HTML.
+
+REPOSITORY
+    <https://github.com/michal-josef-spacek/Tags-HTML-Textarea>
+
+AUTHOR
+    Michal Josef Špaček <mailto:skim@cpan.org>
+
+    <http://skim.cz>
+
+LICENSE AND COPYRIGHT
+    © 2023 Michal Josef Špaček
+
+    BSD 2-Clause License
+
+VERSION
+    0.01
+
