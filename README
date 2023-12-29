@@ -1,12 +1,12 @@
 NAME
-    Tags::HTML::Textarea - Tags helper for form input element.
+    Tags::HTML::Textarea - Tags helper for textareaelement.
 
 SYNOPSIS
      use Tags::HTML::Textarea;
 
      my $obj = Tags::HTML::Textarea->new(%params);
-     $obj->process($input);
-     $obj->process_css($input);
+     $obj->process($textarea);
+     $obj->process_css($textarea);
 
 METHODS
   "new"
@@ -27,16 +27,16 @@ METHODS
             Default value is undef.
 
   "process"
-     $obj->process($input);
+     $obj->process($textarea);
 
     Process Tags structure for fields defined in @fields to output.
 
-    Accepted $input is Data::HTML::Form::Input.
+    Accepted $textarea is Data::HTML::Textarea.
 
     Returns undef.
 
   "process_css"
-     $obj->process_css($input);
+     $obj->process_css($textarea);
 
     Process CSS::Struct structure for output.
 
@@ -70,6 +70,8 @@ EXAMPLE
      # Object.
      my $css = CSS::Struct::Output::Indent->new;
      my $tags = Tags::Output::Indent->new(
+             'no_simple' => ['textarea'],
+             'preserved' => ['textarea'],
              'xml' => 1,
      );
      my $obj = Tags::HTML::Textarea->new(
@@ -77,14 +79,17 @@ EXAMPLE
              'tags' => $tags,
      );
 
-     # Data object for input.
-     my $input = Data::HTML::Texarea->new(
+     # Data object for textarea.
+     my $textarea = Data::HTML::Textarea->new(
+             'cols' => 5,
              'css_class' => 'textarea',
+             'id' => 'textarea',
+             'rows' => 10,
      );
 
-     # Process input.
-     $obj->process($input);
-     $obj->process_css($input);
+     # Process textarea.
+     $obj->process($textarea);
+     $obj->process_css($textarea);
 
      # Print out.
      print "HTML:\n";
@@ -95,10 +100,18 @@ EXAMPLE
 
      # Output:
      # HTML:
-     # TODO
+     # <textarea class="textarea" name="textarea" id="textarea" cols="5" rows="10"></textarea>
      #
      # CSS:
-     # TODO
+     # textarea.textarea {
+     #         width: 100%;
+     #         padding: 12px 20px;
+     #         margin: 8px 0;
+     #         display: inline-block;
+     #         border: 1px solid #ccc;
+     #         border-radius: 4px;
+     #         box-sizing: border-box;
+     # }
 
 DEPENDENCIES
     Class::Utils, Error::Pure, Scalar::Util, Tags::HTML.
