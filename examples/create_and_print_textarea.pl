@@ -41,7 +41,15 @@ print $css->flush;
 
 # Output:
 # HTML:
-# TODO
+# <textarea class="textarea" name="textarea" id="textarea" cols="5" rows="10"></textarea>
 #
 # CSS:
-# TODO
+# textarea.textarea {
+#         width: 100%;
+#         padding: 12px 20px;
+#         margin: 8px 0;
+#         display: inline-block;
+#         border: 1px solid #ccc;
+#         border-radius: 4px;
+#         box-sizing: border-box;
+# }
