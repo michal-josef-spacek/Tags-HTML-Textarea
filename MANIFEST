@@ -19,6 +19,11 @@ META.yml
 README
 t/Tags-HTML-Textarea/01-use.t
 t/Tags-HTML-Textarea/02-version.t
+t/Tags-HTML-Textarea/03-new.t
+t/Tags-HTML-Textarea/04-cleanup.t
+t/Tags-HTML-Textarea/05-init.t
+t/Tags-HTML-Textarea/06-process.t
+t/Tags-HTML-Textarea/07-process_css.t
 Textarea.pm
 xt/Tags-HTML-Textarea/01-pod_coverage.t
 xt/Tags-HTML-Textarea/02-pod.t
