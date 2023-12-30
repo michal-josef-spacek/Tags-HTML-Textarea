@@ -25,30 +25,16 @@ sub _process {
 	$self->{'tags'}->put(
 		['b', 'textarea'],
 		$self->_tags_boolean($textarea, 'autofocus'),
-		defined $textarea->css_class ? (
-			['a', 'class', $textarea->css_class],
-		) : (),
-		defined $textarea->id ? (
-			['a', 'name', $textarea->id],
-			['a', 'id', $textarea->id],
-		) : (),
-		defined $textarea->value ? (
-			['a', 'value', $textarea->value],
-		) : (),
-		defined $textarea->placeholder ? (
-			['a', 'placeholder', $textarea->placeholder],
-		) : (),
+		$self->_tags_value($textarea, 'css_class'),
+		$self->_tags_value($textarea, 'id'),
+		$self->_tags_value($textarea, 'name'),
+		$self->_tags_value($textarea, 'value'),
+		$self->_tags_value($textarea, 'placeholder'),
 		$self->_tags_boolean($textarea, 'readonly'),
 		$self->_tags_boolean($textarea, 'disabled'),
-		defined $textarea->cols ? (
-			['a', 'cols', $textarea->cols],
-		) : (),
-		defined $textarea->rows ? (
-			['a', 'rows', $textarea->rows],
-		) : (),
-		defined $textarea->form ? (
-			['a', 'form', $textarea->form],
-		) : (),
+		$self->_tags_value($textarea, 'cols'),
+		$self->_tags_value($textarea, 'rows'),
+		$self->_tags_value($textarea, 'form'),
 		['e', 'textarea'],
 	);
 
@@ -91,6 +77,16 @@ sub _tags_boolean {
 
 	if ($textarea->$method) {
 		return (['a', $method, $method]);
+	}
+
+	return ();
+}
+
+sub _tags_value {
+	my ($self, $textarea, $method) = @_;
+
+	if (defined $textarea->$method) {
+		return (['a', $method, $textarea->$method]);
 	}
 
 	return ();
