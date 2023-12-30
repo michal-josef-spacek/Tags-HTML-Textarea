@@ -222,7 +222,7 @@ Returns undef.
 
  # Output:
  # HTML:
- # <textarea class="textarea" name="textarea" id="textarea" cols="5" rows="10"></textarea>
+ # <textarea class="textarea" id="textarea" cols="5" rows="10"></textarea>
  #
  # CSS:
  # textarea.textarea {
