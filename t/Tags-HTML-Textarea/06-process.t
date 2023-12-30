@@ -5,7 +5,8 @@ use Data::HTML::Textarea;
 use English;
 use Error::Pure::Utils qw(clean);
 use Tags::HTML::Textarea;
-use Test::More 'tests' => 5;
+use Test::MockObject;
+use Test::More 'tests' => 7;
 use Test::NoWarnings;
 use Tags::Output::Raw;
 
@@ -23,6 +24,28 @@ $obj = Tags::HTML::Textarea->new(
 );
 eval {
 	$obj->process;
+};
+is($EVAL_ERROR, "Input object must be a 'Data::HTML::Textarea' instance.\n",
+	"Input object must be a 'Data::HTML::Textarea' instance.");
+clean();
+
+# Test.
+$obj = Tags::HTML::Textarea->new(
+	'tags' => Tags::Output::Raw->new,
+);
+eval {
+	$obj->process(Test::MockObject->new);
+};
+is($EVAL_ERROR, "Input object must be a 'Data::HTML::Textarea' instance.\n",
+	"Input object must be a 'Data::HTML::Textarea' instance.");
+clean();
+
+# Test.
+$obj = Tags::HTML::Textarea->new(
+	'tags' => Tags::Output::Raw->new,
+);
+eval {
+	$obj->process('bad');
 };
 is($EVAL_ERROR, "Input object must be a 'Data::HTML::Textarea' instance.\n",
 	"Input object must be a 'Data::HTML::Textarea' instance.");
