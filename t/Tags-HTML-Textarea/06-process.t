@@ -6,7 +6,7 @@ use English;
 use Error::Pure::Utils qw(clean);
 use Tags::HTML::Textarea;
 use Test::MockObject;
-use Test::More 'tests' => 7;
+use Test::More 'tests' => 8;
 use Test::NoWarnings;
 use Tags::Output::Raw;
 
@@ -82,3 +82,26 @@ $right_ret = <<'END';
 END
 chomp $right_ret;
 is($ret, $right_ret, "Textarea with boolean values.");
+
+# Test.
+$tags = Tags::Output::Raw->new;
+$textarea = Data::HTML::Textarea->new(
+	'cols' => 2,
+	'css_class' => 'foo',
+	'form' => 'form-id',
+	'id' => 'textarea-id',
+	'name' => 'textarea-name',
+	'placeholder' => 'Fill value',
+	'rows' => 5,
+	'value' => 'textarea value',
+);
+$obj = Tags::HTML::Textarea->new(
+	'tags' => $tags,
+);
+$obj->process($textarea);
+$ret = $tags->flush(1);
+$right_ret = <<'END';
+<textarea class="foo" id="textarea-id" name="textarea-name" placeholder="Fill value" cols="2" rows="5" form="form-id">textarea value</textarea>
+END
+chomp $right_ret;
+is($ret, $right_ret, "Textarea with attributes and value.");
