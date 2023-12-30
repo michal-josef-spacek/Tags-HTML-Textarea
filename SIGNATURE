@@ -1,0 +1,61 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.87.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: RIPEMD160
+
+SHA256 3de20bdd16d3fcf43ece0cea33d7b364f1b6f9829ced6aeb468e657394b20ea9 CONCEPT
+SHA256 0cacbaef8397149505a995153a9513322cc4489a432bb6ae6c2609935420460c Changes
+SHA256 e9ae42c89b2f406c60c950a2a41695eabc2d324c0a9cd90d165e87c4e8a731bd LICENSE
+SHA256 535ac46028d17256c9eddd226cc6319b36927077406961c29f29e4c768644600 MANIFEST
+SHA256 715670d4f42a929622331a9a349354bac53c3e9a7e19ff5b5a6ecb8f1037608e META.yml
+SHA256 7a852af8c6b35aa26a04a1f053d3be305d86ae0c472295c39f0de7d8e0f99641 Makefile.PL
+SHA256 e1b0401b5a62bd2497008572374f17273df6346996b95aa683dba608ae9489ed README
+SHA256 70f88bb2bb174d15c07355abad5366a5d914a6d318a475ad513f9e7888de204b Textarea.pm
+SHA256 57f8755a96548d8226b3c269f88dfde3e7c7277a96768629df8fe7bed779bf8e examples/create_and_print_textarea.pl
+SHA256 cd5397bbe618f5bbd4e12a33b0cf5d21114e771c2dbd0ce28e2135beb52c35a8 inc/Module/Install.pm
+SHA256 8bd506c33fb78f10f6451413e931ca23541fcc4eebe05fcb7c7c9577341223c4 inc/Module/Install/AuthorRequires.pm
+SHA256 1b5430a46a35142ef8914d8c745196fca825defc9dfa7e389299bf294613825e inc/Module/Install/AuthorTests.pm
+SHA256 798836f9ccb8d204b1be31fc3835631f57e9d818b21a8f0d14bfcfb82ff4a72a inc/Module/Install/Base.pm
+SHA256 d64cd4c16f83c5baf11f64a44bea3a0abc060a49da5aba040f0eb01394bf75ab inc/Module/Install/Can.pm
+SHA256 65d7a6098bf3f829e8c1c2865476d3537aa6f0ad0ffc9149e10812c856529043 inc/Module/Install/Fetch.pm
+SHA256 70c4b77acab3ff51dfb318110369607cb109e1c319459249623b787cf3859750 inc/Module/Install/Makefile.pm
+SHA256 14556386168007ce913e669fc08a332ccdb6140246fd55a90c879b5190c1b57a inc/Module/Install/Metadata.pm
+SHA256 53825bc78e4c910b888160bc148c8bc211be58e02b99c8edcbf4854f95faa049 inc/Module/Install/ReadmeFromPod.pm
+SHA256 4c746c02c5cc19bed4c352e76205b4adff4c45ce8310d71294e1b83c059659c2 inc/Module/Install/Win32.pm
+SHA256 d3d9b4583243c470ae895defa4c44564485b53693cba1c50ab0320768f443e97 inc/Module/Install/WriteAll.pm
+SHA256 5586aa37dd1208ae50ec00583e5e522d2fcda49425c724b4006a34d83d4ce3b1 t/Tags-HTML-Textarea/01-use.t
+SHA256 8a5d8ebe0fba05028068679c7969af033bdefa3cd41dd9ad0f7133fc3895ca04 t/Tags-HTML-Textarea/02-version.t
+SHA256 ff9455060db4c088bb2b6725fe22cdc1bbc331f3c39cc223bb3cba4ed8d3a473 t/Tags-HTML-Textarea/03-new.t
+SHA256 69605b07b15e37b2b4aa8a574a40dd0b6223bf2c8e883acc8f84faa31ab94e07 t/Tags-HTML-Textarea/04-cleanup.t
+SHA256 d02051f554f792642b10b9bde060d27bb74ada278fed35dc2f09eb1b610d6af4 t/Tags-HTML-Textarea/05-init.t
+SHA256 3c493c62f8b32649eaee0d781bc5871546dad966e9005b32486e479738c26279 t/Tags-HTML-Textarea/06-process.t
+SHA256 54dfef45682da969df8cee600726eecd6550bf240131cf7bed8b189fd065d400 t/Tags-HTML-Textarea/07-process_css.t
+SHA256 e3be5c088fcf33efcf408dedcedc9143ffd7bdcd9fa3be0b2de66f011ad6aec5 xt/Tags-HTML-Textarea/01-pod_coverage.t
+SHA256 2e898413bc8d46bc0528bf6644d21c5ffbe34b0f9c1265b7e48bb84b972b0af1 xt/Tags-HTML-Textarea/02-pod.t
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBAwAdFiEEbEiOwSagsghKcON6ojV9Rpe/B8sFAmWQbYUACgkQojV9Rpe/
+B8vmlw//eCXNGIwStMYer8RONSUgjvLB7iBmMahLpv3elcmpjRNtFJLbPM76Ukjf
+FnU93FLTmD50to8ObbgYa3i3EF9nP7i59K9evzMsE3cZMhJT44fU4dBnAyAp3Y45
+jQTu+1ND4O6X8Dxck/o3W3Sey+avJTiaC6pfKkMyfZPysOXZ5+nsyaGLSYaae3Hz
+MLtTyBArNv1Oe5NoU7dYCk5YgEx7Djkng6eHgbYOWtfbnB2e1JQEEP/QUHMGwSko
+xFRzZhUoyo1LivFaMmZ4JL9HiPIh8ENt5BF/gh3Cx5X5YD/91Kv9Uk9ABWjCSTj8
+Mc/uztBm+E1jUcYTFGnKYJBsgW7GDHscHdx1he4dPYE02H9U36O3uNLD53frs/Yu
+Z5fymljnFy+atWjf68HaZhxrWsrexVuhV+3PfCgpxgjEgBZWeEjwBYOmorIEmIaw
+XvI0+gIJlDk/EeWkl0ohYyASVGfJG2huTSbHhqoqfljOOfghiZQkulK6ElzQmvLE
+gTPYRZB7wDZgVBJ5GoKwR7giBlWqxBqWAKi23A1ukr+i+frdCjqv91gKqj3Jj9hN
+FgyAkZ0uwzFd7c1bL6TpkkRrfinMXOrZJkYN3n43rt9TmqYpceM2uL0MQfc7E7uA
+gZxC0c9lCxuw6WauDk+Ax+x69H0hH0K/tXBlAY0S8vJzGJtd8e8=
+=7KtR
+-----END PGP SIGNATURE-----
