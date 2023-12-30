@@ -147,7 +147,7 @@ Returns undef.
 
  $obj->process_css($textarea);
 
-Process CSS::Struct structure for output.
+Process L<CSS::Struct> structure for output.
 
 Returns undef.
 
