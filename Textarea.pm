@@ -31,6 +31,7 @@ sub _process {
 		$self->_tags_value($textarea, 'placeholder'),
 		$self->_tags_boolean($textarea, 'readonly'),
 		$self->_tags_boolean($textarea, 'disabled'),
+		$self->_tags_boolean($textarea, 'required'),
 		$self->_tags_value($textarea, 'cols'),
 		$self->_tags_value($textarea, 'rows'),
 		$self->_tags_value($textarea, 'form'),

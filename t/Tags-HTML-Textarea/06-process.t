@@ -71,6 +71,7 @@ $textarea = Data::HTML::Textarea->new(
 	'autofocus' => 1,
 	'disabled' => 1,
 	'readonly' => 1,
+	'required' => 1,
 );
 $obj = Tags::HTML::Textarea->new(
 	'tags' => $tags,
@@ -78,7 +79,7 @@ $obj = Tags::HTML::Textarea->new(
 $obj->process($textarea);
 $ret = $tags->flush(1);
 $right_ret = <<'END';
-<textarea autofocus="autofocus" readonly="readonly" disabled="disabled"></textarea>
+<textarea autofocus="autofocus" readonly="readonly" disabled="disabled" required="required"></textarea>
 END
 chomp $right_ret;
 is($ret, $right_ret, "Textarea with boolean values.");
