@@ -3,6 +3,7 @@ abstract: 'Tags helper for textarea.'
 author:
   - 'Michal Josef Spacek <skim@cpan.org>'
 build_requires:
+  CSS::Struct::Output::Indent: 0
   CSS::Struct::Output::Raw: 0
   Data::HTML::Textarea: 0
   English: 0
