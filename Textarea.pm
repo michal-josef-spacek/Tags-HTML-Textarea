@@ -24,9 +24,7 @@ sub _process {
 
 	$self->{'tags'}->put(
 		['b', 'textarea'],
-		$textarea->autofocus ? (
-			['a', 'autofocus', 'autofocus'],
-		) : (),
+		$self->_tags_boolean($textarea, 'autofocus'),
 		defined $textarea->css_class ? (
 			['a', 'class', $textarea->css_class],
 		) : (),
@@ -40,17 +38,16 @@ sub _process {
 		defined $textarea->placeholder ? (
 			['a', 'placeholder', $textarea->placeholder],
 		) : (),
-		defined $textarea->readonly ? (
-			['a', 'readonly', 'readonly'],
-		) : (),
-		defined $textarea->disabled ? (
-			['a', 'disabled', 'disabled'],
-		) : (),
+		$self->_tags_boolean($textarea, 'readonly'),
+		$self->_tags_boolean($textarea, 'disabled'),
 		defined $textarea->cols ? (
 			['a', 'cols', $textarea->cols],
 		) : (),
 		defined $textarea->rows ? (
 			['a', 'rows', $textarea->rows],
+		) : (),
+		defined $textarea->form ? (
+			['a', 'form', $textarea->form],
 		) : (),
 		['e', 'textarea'],
 	);
@@ -87,6 +84,16 @@ sub _process_css {
 	);
 
 	return;
+}
+
+sub _tags_boolean {
+	my ($self, $textarea, $method) = @_;
+
+	if ($textarea->$method) {
+		return (['a', $method, $method]);
+	}
+
+	return ();
 }
 
 1;

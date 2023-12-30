@@ -26,6 +26,7 @@ resources 'bugtracker' => 'https://github.com/michal-josef-spacek/Tags-HTML-Text
 resources 'homepage' => 'https://github.com/michal-josef-spacek/Tags-HTML-Textarea';
 resources 'repository' => 'git://github.com/michal-josef-spacek/Tags-HTML-Textarea';
 test_requires 'CSS::Struct::Output::Raw' => 0;
+test_requires 'Data::HTML::Textarea' => 0;
 test_requires 'English' => 0;
 test_requires 'Error::Pure::Utils' => 0;
 test_requires 'Tags::Output::Raw' => 0;
