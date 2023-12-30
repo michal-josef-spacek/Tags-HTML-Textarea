@@ -25,16 +25,18 @@ sub _process {
 	$self->{'tags'}->put(
 		['b', 'textarea'],
 		$self->_tags_boolean($textarea, 'autofocus'),
-		$self->_tags_value($textarea, 'css_class'),
+		$self->_tags_value($textarea, 'css_class', 'class'),
 		$self->_tags_value($textarea, 'id'),
 		$self->_tags_value($textarea, 'name'),
-		$self->_tags_value($textarea, 'value'),
 		$self->_tags_value($textarea, 'placeholder'),
 		$self->_tags_boolean($textarea, 'readonly'),
 		$self->_tags_boolean($textarea, 'disabled'),
 		$self->_tags_value($textarea, 'cols'),
 		$self->_tags_value($textarea, 'rows'),
 		$self->_tags_value($textarea, 'form'),
+		defined $textarea->value ? (
+			['d', $textarea->value],
+		) : (),
 		['e', 'textarea'],
 	);
 
@@ -83,10 +85,14 @@ sub _tags_boolean {
 }
 
 sub _tags_value {
-	my ($self, $textarea, $method) = @_;
+	my ($self, $textarea, $method, $method_rewrite) = @_;
 
 	if (defined $textarea->$method) {
-		return (['a', $method, $textarea->$method]);
+		return ([
+			'a',
+			defined $method_rewrite ? $method_rewrite : $method,
+			$textarea->$method,
+		]);
 	}
 
 	return ();
