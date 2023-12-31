@@ -1,9 +1,11 @@
 TODO
 ====
-2. Move $textarea object processing to init().
 3.
 
 Applied
 =======
 1. Tests.
 OK [20231230] skim
+
+2. Move $textarea object processing to init().
+OK [20231231] skim

@@ -10,8 +10,15 @@ use Scalar::Util qw(blessed);
 
 our $VERSION = 0.02;
 
-# Process 'Tags'.
-sub _process {
+sub _cleanup {
+	my $self = shift;
+
+	delete $self->{'_textarea'};
+
+	return;
+}
+
+sub _init {
 	my ($self, $textarea) = @_;
 
 	# Check textarea.
@@ -22,21 +29,34 @@ sub _process {
 		err "Input object must be a 'Data::HTML::Textarea' instance.";
 	}
 
+	$self->{'_textarea'} = $textarea;
+
+	return;
+}
+
+# Process 'Tags'.
+sub _process {
+	my $self = shift;
+
+	if (! exists $self->{'_textarea'}) {
+		return;
+	}
+
 	$self->{'tags'}->put(
 		['b', 'textarea'],
-		$self->_tags_boolean($textarea, 'autofocus'),
-		$self->_tags_value($textarea, 'css_class', 'class'),
-		$self->_tags_value($textarea, 'id'),
-		$self->_tags_value($textarea, 'name'),
-		$self->_tags_value($textarea, 'placeholder'),
-		$self->_tags_boolean($textarea, 'readonly'),
-		$self->_tags_boolean($textarea, 'disabled'),
-		$self->_tags_boolean($textarea, 'required'),
-		$self->_tags_value($textarea, 'cols'),
-		$self->_tags_value($textarea, 'rows'),
-		$self->_tags_value($textarea, 'form'),
-		defined $textarea->value ? (
-			['d', $textarea->value],
+		$self->_tags_boolean($self->{'_textarea'}, 'autofocus'),
+		$self->_tags_value($self->{'_textarea'}, 'css_class', 'class'),
+		$self->_tags_value($self->{'_textarea'}, 'id'),
+		$self->_tags_value($self->{'_textarea'}, 'name'),
+		$self->_tags_value($self->{'_textarea'}, 'placeholder'),
+		$self->_tags_boolean($self->{'_textarea'}, 'readonly'),
+		$self->_tags_boolean($self->{'_textarea'}, 'disabled'),
+		$self->_tags_boolean($self->{'_textarea'}, 'required'),
+		$self->_tags_value($self->{'_textarea'}, 'cols'),
+		$self->_tags_value($self->{'_textarea'}, 'rows'),
+		$self->_tags_value($self->{'_textarea'}, 'form'),
+		defined $self->{'_textarea'}->value ? (
+			['d', $self->{'_textarea'}->value],
 		) : (),
 		['e', 'textarea'],
 	);
@@ -45,19 +65,15 @@ sub _process {
 }
 
 sub _process_css {
-	my ($self, $textarea) = @_;
+	my $self = shift;
 
-	# Check textarea.
-	if (! defined $textarea
-		|| ! blessed($textarea)
-		|| ! $textarea->isa('Data::HTML::Textarea')) {
-
-		err "Input object must be a 'Data::HTML::Textarea' instance.";
+	if (! exists $self->{'_textarea'}) {
+		return;
 	}
 
 	my $css_class = '';
-	if (defined $textarea->css_class) {
-		$css_class = '.'.$textarea->css_class;
+	if (defined $self->{'_textarea'}->css_class) {
+		$css_class = '.'.$self->{'_textarea'}->css_class;
 	}
 
 	$self->{'css'}->put(
@@ -116,8 +132,11 @@ Tags::HTML::Textarea - Tags helper for textareaelement.
  use Tags::HTML::Textarea;
 
  my $obj = Tags::HTML::Textarea->new(%params);
- $obj->process($textarea);
- $obj->process_css($textarea);
+ $obj->cleanup;
+ $obj->init($textarea);
+ $obj->prepare;
+ $obj->process;
+ $obj->process_css;
 
 =head1 METHODS
 
@@ -131,33 +150,65 @@ Constructor.
 
 =item * C<css>
 
-'CSS::Struct::Output' object for L<process_css> processing.
+L<CSS::Struct::Output> object for L<process_css> processing.
 
 Default value is undef.
 
 =item * C<tags>
 
-'Tags::Output' object.
+L<Tags::Output> object for L<process> processing.
 
 Default value is undef.
 
 =back
 
-=head2 C<process>
+=head2 C<cleanup>
 
- $obj->process($textarea);
+ $obj->cleanup;
 
-Process Tags structure for fields defined in C<@fields> to output.
+Process cleanup after page run.
+
+In this case cleanup internal representation of textarea set by L<init>.
+
+Returns undef.
+
+=head2 C<init>
+
+ $obj->init($textarea);
+
+Process initialization in page run.
 
 Accepted C<$textarea> is L<Data::HTML::Textarea>.
 
 Returns undef.
 
+=head2 C<prepare>
+
+ $obj->prepare;
+
+Process initialization before page run.
+
+Do nothing in this object.
+
+Returns undef.
+
+=head2 C<process>
+
+ $obj->process;
+
+Process L<Tags> structure for output.
+
+Do nothing in case without inicialization by L<init>.
+
+Returns undef.
+
 =head2 C<process_css>
 
- $obj->process_css($textarea);
+ $obj->process_css;
 
 Process L<CSS::Struct> structure for output.
+
+Do nothing in case without inicialization by L<init>.
 
 Returns undef.
 
@@ -168,14 +219,9 @@ Returns undef.
                  Parameter 'css' must be a 'CSS::Struct::Output::*' class.
                  Parameter 'tags' must be a 'Tags::Output::*' class.
 
- process():
+ init():
          From Tags::HTML::process():
                  Parameter 'tags' isn't defined.
-         Input object must be a 'Data::HTML::Textarea' instance.
-
- process_css():
-         From Tags::HTML::process_css():
-                 Parameter 'css' isn't defined.
          Input object must be a 'Data::HTML::Textarea' instance.
 
 =head1 EXAMPLE
@@ -210,9 +256,12 @@ Returns undef.
          'rows' => 10,
  );
 
+ # Initialize.
+ $obj->init($textarea);
+
  # Process textarea.
- $obj->process($textarea);
- $obj->process_css($textarea);
+ $obj->process;
+ $obj->process_css;
 
  # Print out.
  print "HTML:\n";

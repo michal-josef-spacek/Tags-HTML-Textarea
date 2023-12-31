@@ -1,4 +1,5 @@
 0.02
+ - API CHANGE: Rewrite to use init() for inicialization of object.
 
 0.01 2023-12-30T20:20:25+01:00
  - First version.

@@ -28,9 +28,12 @@ my $textarea = Data::HTML::Textarea->new(
         'rows' => 10,
 );
 
+# Initialize.
+$obj->init($textarea);
+
 # Process textarea.
-$obj->process($textarea);
-$obj->process_css($textarea);
+$obj->process;
+$obj->process_css;
 
 # Print out.
 print "HTML:\n";
