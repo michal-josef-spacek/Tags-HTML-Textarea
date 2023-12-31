@@ -1,6 +1,7 @@
 TODO
 ====
-2.
+2. Move $textarea object processing to init().
+3.
 
 Applied
 =======
